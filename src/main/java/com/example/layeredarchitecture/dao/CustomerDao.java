@@ -11,4 +11,7 @@ import java.util.ArrayList;
 
 public interface CustomerDao {
     public ArrayList<CustomerDTO> getAllCustomer() throws SQLException, ClassNotFoundException;
+    public boolean saveCustomer(CustomerDTO dto) throws SQLException, ClassNotFoundException;
+
+    boolean savedCustomer(CustomerDTO dto) throws SQLException, ClassNotFoundException;
 }
