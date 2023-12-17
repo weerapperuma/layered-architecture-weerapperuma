@@ -1,5 +1,6 @@
 package com.example.layeredarchitecture.controller;
 
+import com.example.layeredarchitecture.dao.CustomerDao;
 import com.example.layeredarchitecture.dao.CustomerDaoImp;
 import com.example.layeredarchitecture.db.DBConnection;
 import com.example.layeredarchitecture.model.CustomerDTO;
@@ -67,7 +68,7 @@ public class ManageCustomersFormController {
         tblCustomers.getItems().clear();
         /*Get all customers*/
         try {
-            CustomerDaoImp customerDaoImp=new CustomerDaoImp();
+            CustomerDao customerDaoImp=new CustomerDaoImp();
             ArrayList<CustomerDTO> allCustomer = customerDaoImp.getAllCustomer();
 
             for(CustomerDTO customerDTO: allCustomer){
