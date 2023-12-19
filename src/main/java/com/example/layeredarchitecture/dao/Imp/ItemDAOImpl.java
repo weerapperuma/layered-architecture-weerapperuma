@@ -1,14 +1,15 @@
-package com.example.layeredarchitecture.dao;
+package com.example.layeredarchitecture.dao.Imp;
 
+import com.example.layeredarchitecture.dao.custom.ItemDAO;
 import com.example.layeredarchitecture.db.DBConnection;
 import com.example.layeredarchitecture.model.ItemDTO;
 
 import java.sql.*;
 import java.util.ArrayList;
 
-public class ItemDAOImpl implements ItemDAO{
+public class ItemDAOImpl implements ItemDAO {
     @Override
-    public ArrayList<ItemDTO> getAllItems() throws SQLException, ClassNotFoundException {
+    public ArrayList<ItemDTO> getAll() throws SQLException, ClassNotFoundException {
         Connection connection= DBConnection.getDbConnection().getConnection();
         Statement statement=connection.createStatement();
         ResultSet rst = statement.executeQuery("SELECT * FROM item");
@@ -26,7 +27,7 @@ public class ItemDAOImpl implements ItemDAO{
         return dto;
     }
     @Override
-    public boolean saveItem(ItemDTO dto) throws SQLException, ClassNotFoundException {
+    public boolean save(ItemDTO dto) throws SQLException, ClassNotFoundException {
         Connection connection=DBConnection.getDbConnection().getConnection();
         PreparedStatement pstm= connection.prepareStatement("Insert INTO item (code,description,qtyOnHand,unitPrice)");
         pstm.setString(1,dto.getCode());
@@ -36,5 +37,25 @@ public class ItemDAOImpl implements ItemDAO{
         int i = pstm.executeUpdate();
         return (i>0);
 
+    }
+
+    @Override
+    public boolean update(ItemDTO dto) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public boolean exist(String id) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public boolean delete(ItemDTO dto) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
+    public String generateID() throws SQLException, ClassNotFoundException {
+        return null;
     }
 }

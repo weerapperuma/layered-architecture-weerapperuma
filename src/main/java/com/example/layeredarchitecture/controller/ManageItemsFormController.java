@@ -1,7 +1,7 @@
 package com.example.layeredarchitecture.controller;
 
-import com.example.layeredarchitecture.dao.ItemDAO;
-import com.example.layeredarchitecture.dao.ItemDAOImpl;
+import com.example.layeredarchitecture.dao.custom.ItemDAO;
+import com.example.layeredarchitecture.dao.Imp.ItemDAOImpl;
 import com.example.layeredarchitecture.db.DBConnection;
 import com.example.layeredarchitecture.model.ItemDTO;
 import com.example.layeredarchitecture.view.tdm.ItemTM;
@@ -74,7 +74,7 @@ public class ManageItemsFormController {
         tblItems.getItems().clear();
         try {
             /*Get all items*/
-            ArrayList<ItemDTO> allItems=itemDAO.getAllItems();
+            ArrayList<ItemDTO> allItems=itemDAO.getAll();
 
             for(ItemDTO itemDTO:allItems){
                 tblItems.getItems().add(new ItemTM(
@@ -183,7 +183,7 @@ public class ManageItemsFormController {
                     new Alert(Alert.AlertType.ERROR, code + " already exists").show();
                 }
                 //Save Item
-                boolean isSaved=itemDAO.saveItem(new ItemDTO(code,description, unitPrice, qtyOnHand));
+                boolean isSaved=itemDAO.save(new ItemDTO(code,description, unitPrice, qtyOnHand));
                 if(isSaved){
                     tblItems.getItems().add(new ItemTM(code, description, unitPrice, qtyOnHand));
                 }
