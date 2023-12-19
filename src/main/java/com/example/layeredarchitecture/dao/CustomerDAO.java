@@ -5,12 +5,6 @@ import com.example.layeredarchitecture.model.CustomerDTO;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public interface CustomerDAO {
-    public ArrayList<CustomerDTO> getAllCustomer() throws SQLException, ClassNotFoundException;
-    public boolean saveCustomer(CustomerDTO dto) throws SQLException, ClassNotFoundException;
+public interface CustomerDAO extends CrudDAO<CustomerDTO>{
 
-    public boolean updateCustomer(CustomerDTO dto) throws SQLException, ClassNotFoundException;
-    public boolean existCustomer(String id) throws SQLException, ClassNotFoundException;
-    public boolean deleteCustomer(CustomerDTO dto) throws SQLException, ClassNotFoundException;
-    public String generateID() throws SQLException, ClassNotFoundException;
 }

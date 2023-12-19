@@ -69,7 +69,7 @@ public class ManageCustomersFormController {
         /*Get all customers*/
         try {
             //CustomerDAO customerDAOImp =new CustomerDAOImpl();
-            ArrayList<CustomerDTO> allCustomer = customerDao.getAllCustomer();
+            ArrayList<CustomerDTO> allCustomer = customerDao.getAll();
 
             for(CustomerDTO customerDTO: allCustomer){
                 tblCustomers.getItems().add(new CustomerTM(
@@ -83,7 +83,6 @@ public class ManageCustomersFormController {
         } catch (ClassNotFoundException e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
-
 
     }
 
@@ -147,7 +146,7 @@ public class ManageCustomersFormController {
                 if (existCustomer(id)) {
                     new Alert(Alert.AlertType.ERROR, id + " already exists").show();
                 }
-                boolean isSaved = customerDao.saveCustomer( new CustomerDTO( id, name, address ) );
+                boolean isSaved = customerDao.save( new CustomerDTO( id, name, address ) );
                 if(isSaved){
                     tblCustomers.getItems().add(new CustomerTM(id, name, address));
                 }
@@ -165,7 +164,7 @@ public class ManageCustomersFormController {
                     new Alert(Alert.AlertType.ERROR, "There is no such customer associated with the id " + id).show();
                 }
                 //
-                Boolean isUpdates=customerDao.updateCustomer(new CustomerDTO(id,name,address));
+                Boolean isUpdates=customerDao.update(new CustomerDTO(id,name,address));
                 if(isUpdates){
                     tblCustomers.refresh();
                 }
@@ -186,7 +185,7 @@ public class ManageCustomersFormController {
 
 
     boolean existCustomer(String id) throws SQLException, ClassNotFoundException {
-        boolean isExists=customerDao.existCustomer(id);
+        boolean isExists=customerDao.exist(id);
         return isExists;
     }
 
@@ -198,7 +197,7 @@ public class ManageCustomersFormController {
             if (!existCustomer(id)) {
                 new Alert(Alert.AlertType.ERROR, "There is no such customer associated with the id " + id).show();
             }
-            boolean isDeleted=customerDao.deleteCustomer(new CustomerDTO(id));
+            boolean isDeleted=customerDao.delete(new CustomerDTO(id));
             if(isDeleted){
                 tblCustomers.getItems().remove(tblCustomers.getSelectionModel().getSelectedItem());
                 tblCustomers.getSelectionModel().clearSelection();
