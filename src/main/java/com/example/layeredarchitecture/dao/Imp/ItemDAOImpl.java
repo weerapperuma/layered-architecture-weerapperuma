@@ -1,5 +1,6 @@
 package com.example.layeredarchitecture.dao.Imp;
 
+import com.example.layeredarchitecture.dao.SQLUtil;
 import com.example.layeredarchitecture.dao.custom.ItemDAO;
 import com.example.layeredarchitecture.db.DBConnection;
 import com.example.layeredarchitecture.model.ItemDTO;
@@ -50,8 +51,9 @@ public class ItemDAOImpl implements ItemDAO {
     }
 
     @Override
-    public boolean delete(ItemDTO dto) throws SQLException, ClassNotFoundException {
-        return false;
+    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+
+        return SQLUtil.execute("DELETE FROM Customer WHERE id=?",id);
     }
 
     @Override

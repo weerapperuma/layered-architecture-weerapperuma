@@ -41,10 +41,11 @@ public class CustomerDAOImpl implements CustomerDAO {
         ResultSet rst=SQLUtil.execute("SELECT id FROM Customer WHERE id=?",id);
         return rst.next();
     }
-    public boolean delete(CustomerDTO dto) throws SQLException, ClassNotFoundException {
-
-        return SQLUtil.execute("DELETE FROM Customer WHERE id=?",dto.getId());
+    @Override
+    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+        return SQLUtil.execute("DELETE FROM Customer WHERE id=?",id);
     }
+
     @Override
     public String generateID() throws SQLException, ClassNotFoundException {
 

@@ -7,5 +7,5 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface CustomerDAO extends CrudDAO<CustomerDTO> {
-    public CustomerDTO search(String id) throws SQLException, ClassNotFoundException;
+    CustomerDTO search(String id) throws SQLException, ClassNotFoundException;
 }
