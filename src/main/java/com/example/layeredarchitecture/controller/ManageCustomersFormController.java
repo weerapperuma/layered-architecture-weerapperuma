@@ -164,8 +164,11 @@ public class ManageCustomersFormController {
                     new Alert(Alert.AlertType.ERROR, "There is no such customer associated with the id " + id).show();
                 }
                 //
-                Boolean isUpdates=customerDao.update(new CustomerDTO(id,name,address));
+                boolean isUpdates=customerDao.update (new CustomerDTO(id,name,address));
                 if(isUpdates){
+                    CustomerTM selectedCustomer = tblCustomers.getSelectionModel().getSelectedItem();
+                    selectedCustomer.setName(name);
+                    selectedCustomer.setAddress(address);
                     tblCustomers.refresh();
                 }
             } catch (SQLException e) {
@@ -174,10 +177,7 @@ public class ManageCustomersFormController {
                 e.printStackTrace();
             }
 
-            CustomerTM selectedCustomer = tblCustomers.getSelectionModel().getSelectedItem();
-            selectedCustomer.setName(name);
-            selectedCustomer.setAddress(address);
-            tblCustomers.refresh();
+
         }
 
         btnAddNewCustomer.fire();
