@@ -1,4 +1,4 @@
 package com.example.layeredarchitecture.dao.Imp;
 
-public class OrderDetails {
+public class OrderDetailsImpl {
 }

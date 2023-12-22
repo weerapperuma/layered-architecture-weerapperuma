@@ -1,5 +1,7 @@
 package com.example.layeredarchitecture.util;
 
+import com.example.layeredarchitecture.model.CustomerDTO;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -13,5 +15,6 @@ public interface CrudUtil<T>{
     boolean exist(String id) throws SQLException, ClassNotFoundException;
     boolean delete(String id) throws SQLException, ClassNotFoundException;
     String generateID() throws SQLException, ClassNotFoundException;
+    T search(String id) throws SQLException, ClassNotFoundException;
 
 }

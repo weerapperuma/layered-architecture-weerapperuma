@@ -54,4 +54,14 @@ public class ItemDAOImpl implements ItemDAO {
     public String generateID() throws SQLException, ClassNotFoundException {
         return null;
     }
+
+    @Override
+    public ItemDTO search(String newItemCode) throws SQLException, ClassNotFoundException {
+        ResultSet rst = SQLUtil.execute("SELECT * FROM Item WHERE code=?",(newItemCode+""));
+        if(rst.next()){
+            return new ItemDTO( rst.getString(1), rst.getString(2), rst.getBigDecimal(3), rst.getInt(4));
+        }
+        return null;
+
+    }
 }
